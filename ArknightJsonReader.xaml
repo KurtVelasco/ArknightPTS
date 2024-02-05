@@ -1,0 +1,39 @@
+﻿<Window x:Class="ArknightPTS.ArknightJsonReader"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArknightPTS"
+        mc:Ignorable="d"
+        Title="ArknightJsonReader" Height="500" Width="820">
+    <Grid>
+
+        <GroupBox Header="Drag File Here" Margin="531,121,0,0" Height="285" VerticalAlignment="Top" HorizontalAlignment="Left" Width="259"/>
+
+        <GroupBox Header="Information" Margin="8,10,0,0" Height="111" VerticalAlignment="Top" HorizontalAlignment="Left" Width="508"/>
+
+        <Border BorderBrush="Black" BorderThickness="0.5" Background="LightGray"
+                AllowDrop="True" Drop="Border_Drop" Margin="542,147,0,0" HorizontalAlignment="Left" Width="237" Height="247" VerticalAlignment="Top">
+            <TextBlock Text="Drop Files Here" Opacity="0.7" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <GroupBox Header="Guide" Margin="531,10,0,0" Height="106" VerticalAlignment="Top" HorizontalAlignment="Left" Width="259"/>
+
+        <GroupBox Header="The Grinder" Margin="10,121,0,0" Height="285" VerticalAlignment="Top" HorizontalAlignment="Left" Width="507"/>
+
+        <Button x:Name="Button_Download" Content="Download Json" HorizontalAlignment="Left" Margin="413,35,0,0" VerticalAlignment="Top" Click="Button_Download_Click" Width="89"/>
+        <TextBox x:Name="Textbox_DownloadURL" HorizontalAlignment="Left" Margin="116,37,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="292"/>
+        <ListBox x:Name="ListBox_Logs" d:ItemsSource="{d:SampleData ItemCount=0}" Margin="25,147,0,0" Height="247" VerticalAlignment="Top" HorizontalAlignment="Left" Width="478"/>
+        <Label Content="Download URL:" HorizontalAlignment="Left" Height="26" Margin="24,33,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Filename:" HorizontalAlignment="Left" Height="25" Margin="54,61,0,0" VerticalAlignment="Top" Width="92"/>
+        <TextBox x:Name="Textbox_FileName" IsEnabled="False" HorizontalAlignment="Left" Margin="116,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" />
+        <Button x:Name="Button_FileLocation" Content="Browse" HorizontalAlignment="Left" Margin="413,63,0,0" VerticalAlignment="Top" Width="89" Click="Button_FileLocation_Click"/>
+        <Button x:Name="Button_ExtractJSON" IsEnabled="False" Content="EXTRACT JSON"  HorizontalAlignment="Left" Margin="25,419,0,0" VerticalAlignment="Top" Width="478" Click="Button_ExtractJSON_Click"/>
+        <TextBox x:Name="Textbox_FileName_Copy" IsEnabled="False" HorizontalAlignment="Left" Margin="116,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="386" />
+        <Label Content=" Unedited Json:" HorizontalAlignment="Left" Height="25" Margin="24,91,0,0" VerticalAlignment="Top" Width="106" RenderTransformOrigin="0.476,0.342"/>
+        <TextBlock HorizontalAlignment="Left" Margin="542,36,0,0" TextWrapping="Wrap" Text="Download a File or Drag and drop the Json File from Kengxxiao's or any chracter table. Set the file path, then extract. You can edit the configfile.txt for specific extraction " VerticalAlignment="Top" Width="237"/>
+        <Image HorizontalAlignment="Left" Source="Resource/teaoppsis.png" Height="69" Margin="740,74,0,0" VerticalAlignment="Top" Width="56"/>
+        <Button x:Name="Button_Return"  Content="Return"  HorizontalAlignment="Left" Margin="542,419,0,0" VerticalAlignment="Top" Width="237" Click="Button_ExtractJSON_Click"/>
+
+    </Grid>
+</Window>
