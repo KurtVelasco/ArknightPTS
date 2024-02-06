@@ -24,6 +24,7 @@ namespace ArknightPTS
     /// </summary>
     public partial class ArknightJsonReader : Window
     {
+       
         private Dictionary<string, Dictionary<string, object>> OPERATOR_DICT = new Dictionary<string, Dictionary<string, object>>();
         private dynamic UNEDITED_JSON = null;
         private Dictionary<string, string> CONFIG_FILE = new Dictionary<string, string>();

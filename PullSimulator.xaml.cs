@@ -20,6 +20,7 @@ using System.IO.Ports;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Threading;
+using System.Net;
 
 namespace ArknightPTS
 {
@@ -28,14 +29,16 @@ namespace ArknightPTS
     /// </summary>
     public partial class PullSimulator : Window
     {
-        private Dictionary<string, Dictionary<string, object>> OPERATOR_DICT = new Dictionary<string, Dictionary<string, object>>();
-        private Dictionary<string, Character> CHARACTERS_LOADED;
-        private Dictionary<string, Character> charactersByRarity = new Dictionary<string, Character>();
+       
+        private Dictionary<string, Character> CHARACTERS_LOADED;    
         private List<Character> TIER_3 = new List<Character>();
         private List<Character> TIER_4 = new List<Character>();
         private List<Character> TIER_5 = new List<Character>();
         private List<Character> TIER_6 = new List<Character>();
         private static Random random = new Random();
+        private int TOTAL_PULLS = 0;
+        private int PULLS_6STAR = 0;
+        private int LAST_6STAR = 0;
         public class Character
         {
             public string Key {  get; set; }
@@ -49,6 +52,7 @@ namespace ArknightPTS
             InitializeComponent();
             LoadCharacters();
             LoadCharactersByRarity();
+
         }
      
 
@@ -128,23 +132,30 @@ namespace ArknightPTS
         {
             if (tierRoll <= 0.4)
             {
+                LAST_6STAR += 1;
                 return GetRandomCharacterFromRarity("TIER_3");
             }
             else if (tierRoll <= 0.9)
             {
+                LAST_6STAR += 1;
                 return GetRandomCharacterFromRarity("TIER_4");
             }
             else if (tierRoll <= 0.98)
             {
+                LAST_6STAR += 1;
                 return GetRandomCharacterFromRarity("TIER_5");
             }
             else
             {
+                LAST_6STAR = 0;
+                PULLS_6STAR += 1;
                 return GetRandomCharacterFromRarity("TIER_6");
             }
         }
         private void SimulatePulls(int numPulls)
         {
+            TOTAL_PULLS += numPulls;
+
             List<Character> results = new List<Character>();
             for (int i = 0; i < numPulls; i++)
             {
@@ -156,6 +167,7 @@ namespace ArknightPTS
             FillListView(results);
 
         }
+
         private void FillListView(List<Character> output)
         {
             ListView_PullWindow.Items.Clear();
@@ -164,12 +176,67 @@ namespace ArknightPTS
                 {
                     Name = ch.Name, 
                     Rarity = ch.Rarity, 
+                    Key = ch.Key
                 });
             }
         }
         private void Button_10XPull_Click(object sender, RoutedEventArgs e)
         {
+           
             SimulatePulls(10);
+            TextBox_TOTALPULLS.Text = TOTAL_PULLS.ToString();
+            TextBox_6STARPULLS.Text = PULLS_6STAR.ToString();   
+            TextBox_LAST6STAR.Text =  LAST_6STAR.ToString();    
+        }
+
+        private async void DownloadAndDisplayImage(string id)
+        {
+            try
+            {
+                string imageUrl = "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/" + id + ".png";
+                byte[] imageData = await DownloadImageAsync(imageUrl);
+                DisplayImage(imageData);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private async Task<byte[]> DownloadImageAsync(string imageUrl)
+        {
+            using (var httpClient = new WebClient())
+            {
+                return await httpClient.DownloadDataTaskAsync(imageUrl);
+            }
+        }
+
+        private void DisplayImage(byte[] imageData)
+        {
+            try
+            { 
+                using (MemoryStream ms = new MemoryStream(imageData))
+                {
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.StreamSource = ms;
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.EndInit();
+                    img.Source = bitmap;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void ListView_PullWindow_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                string Id = "";
+            foreach (Character selectedItem in ListView_PullWindow.SelectedItems)
+            {
+                Id = selectedItem.Key;
+            }
+            DownloadAndDisplayImage(Id);
         }
     }
 }

@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArknightPTS"
         mc:Ignorable="d"
-        Title="PullSimulator" Height="450" Width="800">
+        Title="PullSimulator" Height="474" Width="800">
     <Grid>
-        <GroupBox Header="GroupBox" Margin="10,77,337,12"/>
+
+        <GroupBox Header="Pull Statistics" Margin="483,278,0,0" Height="144" VerticalAlignment="Top" HorizontalAlignment="Left" Width="282"/>
+
+        <GroupBox Header="Photo Op" Margin="483,20,0,0" Height="258" VerticalAlignment="Top" HorizontalAlignment="Left" Width="282"/>
+
+        <GroupBox Header="GACHA GACHA" Margin="10,77,0,0" Height="345" VerticalAlignment="Top" HorizontalAlignment="Left" Width="453"/>
 
         <ComboBox x:Name="Combombox_HeadHuntType" HorizontalAlignment="Left" Margin="32,41,0,0" VerticalAlignment="Top" Width="403"/>
-        <ListView x:Name="ListView_PullWindow" HorizontalAlignment="Left" Height="274" Margin="32,100,0,0" VerticalAlignment="Top" Width="403" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView x:Name="ListView_PullWindow" HorizontalAlignment="Left" Height="274" Margin="32,100,0,0" VerticalAlignment="Top" Width="403" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListView_PullWindow_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Operator" DisplayMemberBinding="{Binding Name}" Width="220" />
@@ -41,7 +46,16 @@
         <Button x:Name="Button_10XPull" Content="10 X PULL" HorizontalAlignment="Left" Margin="32,389,0,0" VerticalAlignment="Top" Width="175" Click="Button_10XPull_Click"/>
         <Button x:Name="Button_1XPull" Content="SINGLE PULL" HorizontalAlignment="Left" Margin="260,389,0,0" VerticalAlignment="Top" Width="175"/>
         <Label Content="" HorizontalAlignment="Left" Margin="468,130,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="GroupBox" Margin="10,20,337,362"/>
+        <GroupBox Header="HeadHunt Type" Margin="10,20,0,0" Height="52" VerticalAlignment="Top" HorizontalAlignment="Left" Width="453"/>
+        <Image x:Name="img"  HorizontalAlignment="Left" Height="226" Margin="507,41,0,0" VerticalAlignment="Top" Width="251" OpacityMask="Black" RenderTransformOrigin="0.42,0.507"/>
+        <TextBox x:Name="TextBox_TOTALPULLS" HorizontalAlignment="Left" Margin="565,303,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <TextBox x:Name="TextBox_6STARPULLS" HorizontalAlignment="Left" Margin="565,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <TextBox x:Name="TextBox_LAST6STAR" HorizontalAlignment="Left" Margin="565,363,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <TextBox HorizontalAlignment="Left" Margin="565,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183"/>
+        <Label Content="Total Pulls:" HorizontalAlignment="Left" Margin="497,299,0,0" VerticalAlignment="Top"/>
+        <Label Content="6 Stars Pull:" HorizontalAlignment="Left" Margin="492,330,0,0" VerticalAlignment="Top"/>
+        <Label Content="6 Stars Last:" HorizontalAlignment="Left" Margin="492,359,0,0" VerticalAlignment="Top"/>
+        <Label Content="Last 6 Stars:" HorizontalAlignment="Left" Margin="492,389,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
