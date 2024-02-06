@@ -72,20 +72,27 @@ namespace ArknightPTS
         {
             foreach (var entry in UNEDITED_JSON)
             {
-                var key = entry.Key;
-                var value = entry.Value;
-                if (value.ContainsKey("subProfessionId") && value["subProfessionId"].ToString() != "notchar2" &&
-                    value.ContainsKey("subProfessionId") && value["subProfessionId"].ToString() != "notchar2")
+                try
                 {
-                    OPERATOR_DICT[key] = new Dictionary<string, object>();
-                    foreach (var kvp in CONFIG_FILE)
+                    var key = entry.Key;
+                    var value = entry.Value;
+                    if (value.ContainsKey("subProfessionId") && value["subProfessionId"].ToString() != "notchar2" &&
+                        value.ContainsKey("subProfessionId") && value["subProfessionId"].ToString() != "notchar2")
                     {
-                        OPERATOR_DICT[key][kvp.Key] = value.ContainsKey(kvp.Value) ? value[kvp.Value] : null;
+                        OPERATOR_DICT[key] = new Dictionary<string, object>();
+                        foreach (var kvp in CONFIG_FILE)
+                        {
+                            OPERATOR_DICT[key][kvp.Key] = value.ContainsKey(kvp.Value) ? value[kvp.Value] : null;
+                        }
+                    }
+                    else
+                    {
+                        ListBox_Logs.Items.Add(entry.Key + " Removed from pool");
                     }
                 }
-                else
+                catch
                 {
-                    ListBox_Logs.Items.Add(entry.Key + " Removed from pool");
+                    MessageBox.Show("The Json File is invalid", "Invalid Json File", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             DumpJson();
