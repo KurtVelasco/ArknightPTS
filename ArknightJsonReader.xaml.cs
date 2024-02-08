@@ -104,8 +104,12 @@ namespace ArknightPTS
             if (Textbox_FileName.Text.Length > 0)
             {
                 string json = JsonConvert.SerializeObject(OPERATOR_DICT, Formatting.Indented);
-                File.WriteAllText(Textbox_FileName.Text + ".json", json);
-            }           
+                File.WriteAllText(Textbox_FileName.Text, json);
+            }
+            MessageBox.Show("Json File Generated", "Done");
+            ArknightJsonReader aj = new ArknightJsonReader();
+            aj.Show();
+            this.Close();   
         }
         private void Button_Download_Click(object sender, RoutedEventArgs e)
         {

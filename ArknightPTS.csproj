@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DownloadFiles.cs" />
     <Compile Include="PullSimulator.xaml.cs">
       <DependentUpon>PullSimulator.xaml</DependentUpon>
     </Compile>
@@ -124,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\teaoppsis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\amiyadread.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

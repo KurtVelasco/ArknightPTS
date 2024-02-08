@@ -23,7 +23,7 @@
 
         <Button x:Name="Button_Download" Content="Download Json" HorizontalAlignment="Left" Margin="413,35,0,0" VerticalAlignment="Top" Click="Button_Download_Click" Width="89"/>
         <TextBox x:Name="Textbox_DownloadURL" HorizontalAlignment="Left" Margin="116,37,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="292"/>
-        <ListBox x:Name="ListBox_Logs" d:ItemsSource="{d:SampleData ItemCount=0}" Margin="25,147,0,0" Height="247" VerticalAlignment="Top" HorizontalAlignment="Left" Width="351"/>
+        <ListBox x:Name="ListBox_Logs" d:ItemsSource="{d:SampleData ItemCount=0}" Margin="25,147,0,0" Height="247" VerticalAlignment="Top" HorizontalAlignment="Left" Width="478"/>
         <Label Content="Download URL:" HorizontalAlignment="Left" Height="26" Margin="24,33,0,0" VerticalAlignment="Top" Width="92"/>
         <Label Content="Filename:" HorizontalAlignment="Left" Height="25" Margin="54,61,0,0" VerticalAlignment="Top" Width="92"/>
         <TextBox x:Name="Textbox_FileName" IsEnabled="False" HorizontalAlignment="Left" Margin="116,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" />
@@ -34,10 +34,6 @@
         <TextBlock HorizontalAlignment="Left" Margin="542,36,0,0" TextWrapping="Wrap" Text="Download a File or Drag and drop the Json File from Kengxxiao's or any chracter table. Set the file path, then extract. You can edit the configfile.txt for specific extraction " VerticalAlignment="Top" Width="237"/>
         <Image HorizontalAlignment="Left" Source="Resource/teaoppsis.png" Height="69" Margin="740,74,0,0" VerticalAlignment="Top" Width="56"/>
         <Button x:Name="Button_Return"  Content="Return"  HorizontalAlignment="Left" Margin="542,419,0,0" VerticalAlignment="Top" Width="237" Click="Button_ExtractJSON_Click"/>
-        <RadioButton Content="Extract All" HorizontalAlignment="Left" Margin="380,152,0,0" VerticalAlignment="Top" Width="113"/>
-        <RadioButton Content="Only Operators" HorizontalAlignment="Left" Margin="380,182,0,0" VerticalAlignment="Top" Width="113"/>
-        <RadioButton Content="Only Headhunting" HorizontalAlignment="Left" Margin="380,212,0,0" VerticalAlignment="Top" Width="126"/>
-        <RadioButton Content="Only EventRewards" HorizontalAlignment="Left" Margin="380,242,0,0" VerticalAlignment="Top" Width="126"/>
 
     </Grid>
 </Window>

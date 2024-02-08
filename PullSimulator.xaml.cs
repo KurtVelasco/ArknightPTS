@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
-using static ArknightPTS.PullSimulator;
 using System.Windows.Media.Animation;
 using System.Windows.Media.TextFormatting;
 using System.IO.Ports;
@@ -30,7 +29,7 @@ namespace ArknightPTS
     public partial class PullSimulator : Window
     {
        
-        private Dictionary<string, Character> CHARACTERS_LOADED;    
+        public Dictionary<string, Character> CHARACTERS_LOADED;    
         private List<Character> TIER_3 = new List<Character>();
         private List<Character> TIER_4 = new List<Character>();
         private List<Character> TIER_5 = new List<Character>();
@@ -39,6 +38,11 @@ namespace ArknightPTS
         private int TOTAL_PULLS = 0;
         private int PULLS_6STAR = 0;
         private int LAST_6STAR = 0;
+        private int SIX_STAR = 0;
+        private int FIVE_STAR = 0;
+        private int FOUR_STAR = 0;
+        private double SPENDING = 0;
+
         public class Character
         {
             public string Key {  get; set; }
@@ -55,14 +59,36 @@ namespace ArknightPTS
 
         }
      
-
+        //This codes looks ugly as hell and may cause an infinite loop
+        // Will fix later maybe prob 
         private void LoadCharacters()
         {
-            string json = File.ReadAllText("meme.json.json");
-            CHARACTERS_LOADED = JsonConvert.DeserializeObject<Dictionary<string, Character>>(json);
-            foreach (var kvp in CHARACTERS_LOADED)
+            try
             {
-                kvp.Value.Key = kvp.Key;
+                string json = File.ReadAllText("Jason/testCharTable.json");
+                CHARACTERS_LOADED = JsonConvert.DeserializeObject<Dictionary<string, Character>>(json);
+                foreach (var kvp in CHARACTERS_LOADED)
+                {
+                    kvp.Value.Key = kvp.Key;
+                }
+            }
+            catch
+            {
+                MessageBoxResult ms = MessageBox.Show("No Character Table available. Do you want to Download a dummy Char Json?", "No Json File"
+                    , MessageBoxButton.YesNo, MessageBoxImage.Information);
+                if(ms != MessageBoxResult.Yes)
+                {
+                    Button_X10Pull.IsEnabled = false;
+                    MessageBox.Show("Failed to Download/Json File, Check for Internet Connection or manually add the Json File", "No Json File");
+                }
+                else
+                {
+                    DownloadFiles downloadFiles = new DownloadFiles();
+                    if(downloadFiles.PullSimJson()){
+                        downloadFiles.ExtractJson();
+                        LoadCharacters();
+                    }
+                }
             }
         }
         private void LoadCharactersByRarity()
@@ -180,14 +206,7 @@ namespace ArknightPTS
                 });
             }
         }
-        private void Button_10XPull_Click(object sender, RoutedEventArgs e)
-        {
-           
-            SimulatePulls(10);
-            TextBox_TOTALPULLS.Text = TOTAL_PULLS.ToString();
-            TextBox_6STARPULLS.Text = PULLS_6STAR.ToString();   
-            TextBox_LAST6STAR.Text =  LAST_6STAR.ToString();    
-        }
+
 
         private async void DownloadAndDisplayImage(string id)
         {
@@ -221,7 +240,7 @@ namespace ArknightPTS
                     bitmap.StreamSource = ms;
                     bitmap.CacheOption = BitmapCacheOption.OnLoad;
                     bitmap.EndInit();
-                    img.Source = bitmap;
+                    Image_Ops.Source = bitmap;
                 }
             }
             catch (Exception ex)
@@ -238,5 +257,39 @@ namespace ArknightPTS
             }
             DownloadAndDisplayImage(Id);
         }
+
+        private void Button_Reset_Click(object sender, RoutedEventArgs e)
+        {
+            PULLS_6STAR = 0;
+            TOTAL_PULLS = 0;
+            LAST_6STAR = 0;
+            SIX_STAR = 0;   
+            FIVE_STAR = 0;
+            FOUR_STAR = 0;
+            SPENDING = 0;
+            ResetCounter();
+        }
+
+        private void Button_1XPull_Click(object sender, RoutedEventArgs e)
+        {
+            SimulatePulls(1);
+            ResetCounter();
+        }
+
+        private void Button_X10Pull_Click(object sender, RoutedEventArgs e)
+        {
+            SimulatePulls(10);
+            ResetCounter();
+        }
+        private void ResetCounter()
+        {
+            TextBox_TOTALPULLS.Text = TOTAL_PULLS.ToString();
+            TextBox_6STARPULLS.Text = PULLS_6STAR.ToString();
+            TextBox_LAST6STAR.Text = LAST_6STAR.ToString();
+            Textbox_6Stars.Text = SIX_STAR.ToString();
+            Textbox_5Stars.Text = FIVE_STAR.ToString();
+            Textbox_4Stars.Text = FOUR_STAR.ToString();
+        }
+
     }
 }
