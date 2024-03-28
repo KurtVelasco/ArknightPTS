@@ -116,10 +116,10 @@ namespace ArknightPTS
             bool isSuccess = false;
             using (WebClient client = new WebClient())
             {
-                ListBox_Logs.Items.Add("Downloaded from the following file");
+                ListBox_Logs.Items.Add("Downloaded from the following site: \n" + Textbox_DownloadURL.Text);
                 try
                 {
-                    client.DownloadFile(DEFAULT_URL, DEFAULT_FILEPATH);
+                    client.DownloadFile(Textbox_DownloadURL.Text, DEFAULT_FILEPATH);
                     ListBox_Logs.Items.Add("File Downloaded");
                     string json = File.ReadAllText(DEFAULT_FILEPATH);
                     UNEDITED_JSON = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(json);
