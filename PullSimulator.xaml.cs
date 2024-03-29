@@ -65,7 +65,7 @@ namespace ArknightPTS
         {
             try
             {
-                string json = File.ReadAllText("Jason/testCharTable.json");
+                string json = File.ReadAllText("testCharTable.json");
                 CHARACTERS_LOADED = JsonConvert.DeserializeObject<Dictionary<string, Character>>(json);
                 foreach (var kvp in CHARACTERS_LOADED)
                 {
@@ -80,6 +80,9 @@ namespace ArknightPTS
                 {
                     Button_X10Pull.IsEnabled = false;
                     MessageBox.Show("Failed to Download/Json File, Check for Internet Connection or manually add the Json File", "No Json File");
+                    MainWindow mw = new MainWindow();   
+                    mw.Show();
+                    this.Close();
                 }
                 else
                 {
@@ -291,5 +294,11 @@ namespace ArknightPTS
             Textbox_4Stars.Text = FOUR_STAR.ToString();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
+        }
     }
 }

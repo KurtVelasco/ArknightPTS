@@ -75,7 +75,7 @@
             </TextBox.RenderTransform>
         </TextBox>
         <Label Grid.Column="3" Content="Spending:" HorizontalAlignment="Left" Margin="32,0,0,89" VerticalAlignment="Bottom"/>
-        <Button Grid.Column="2" Content="Auto Pull X10" Margin="0,0,22,41" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="126"/>
+        <Button Grid.Column="2" Content="Return to Menu" Margin="0,0,22,41" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="126" Click="Button_Click"/>
         <Label Grid.Column="3" Content="4 Stars:" HorizontalAlignment="Right" Margin="0,0,153,180" VerticalAlignment="Bottom"/>
         <Label Grid.Column="3" Content="5 Stars:" HorizontalAlignment="Right" Margin="0,0,153,150" VerticalAlignment="Bottom"/>
         <Label Grid.Column="3" Content="6 Stars:" HorizontalAlignment="Right" Margin="0,0,153,120" VerticalAlignment="Bottom"/>
