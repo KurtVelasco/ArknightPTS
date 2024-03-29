@@ -17,7 +17,7 @@ namespace ArknightPTS
         private dynamic UNEDITED_JSON = null;
         private Dictionary<string, string> CONFIG_FILE = new Dictionary<string, string>();
         private string DEFAULT_URL = "https://raw.githubusercontent.com/Kengxxiao/ArknightsGameData_YoStar/main/en_US/gamedata/excel/character_table.json";
-        string DEFAULT_FILEPATH = "Jason/testCharTable.json";
+        string DEFAULT_FILEPATH = "testCharTable.json";
         public string JSON_STRING = "";
 
         public DownloadFiles()
