@@ -180,12 +180,9 @@ namespace ArknightPTS
 
         private void Button_ExtractJSON_Click(object sender, RoutedEventArgs e)
         {
-            if(Textbox_FileName.Text.Length == 0)
-            {
-                MessageBox.Show("Define the filepath for the Json File", "Invalid FilePath", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            ExtractJson();
+            MainWindow mw = new MainWindow();
+            mw.Show();
+            this.Close();
         }
     }
 }
