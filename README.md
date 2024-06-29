@@ -2,7 +2,7 @@ ArknightsTPTS
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A collection of Systems that I compiled from my previous personal projects themed with Arknights. 
+ A collection of Systems that I compiled from my previous personal projects themed with Arknights. 
 Plannining to use this compilation for my other projects regarding other gacha games.
 
 ![1145598749427646475](https://github.com/KurtVelasco/ArknightPTS/assets/124945749/ab42262f-26a1-453b-9cdb-b06de373acb8)
