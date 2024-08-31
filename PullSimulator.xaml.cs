@@ -61,6 +61,9 @@ namespace ArknightPTS
      
         //This codes looks ugly as hell and may cause an infinite loop
         // Will fix later maybe prob 
+        private void checkValidityLink(string link){
+            
+        }
         private void LoadCharacters()
         {
             try
