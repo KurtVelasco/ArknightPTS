@@ -12,7 +12,7 @@
             <ColumnDefinition Width="66*"/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="GroupBox" Margin="10,10,10,17">
-            <ListView x:Name="Listview_Menu" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="Black" SelectionChanged="Listview_Menu_SelectionChanged">
+            <ListView x:Name="Listview_Menu" d:ItemsSource="{d:SampleData ItemCount=5}"  Foreground="Black" SelectionChanged="Listview_Menu_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Menu" Width="210"/>
