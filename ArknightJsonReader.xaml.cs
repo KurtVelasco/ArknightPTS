@@ -113,7 +113,6 @@ namespace ArknightPTS
         }
         private void Button_Download_Click(object sender, RoutedEventArgs e)
         {
-            bool isSuccess = false;
             using (WebClient client = new WebClient())
             {
                 ListBox_Logs.Items.Add("Downloaded from the following site: \n" + Textbox_DownloadURL.Text);
@@ -123,7 +122,6 @@ namespace ArknightPTS
                     ListBox_Logs.Items.Add("File Downloaded");
                     string json = File.ReadAllText(DEFAULT_FILEPATH);
                     UNEDITED_JSON = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(json);
-                    isSuccess = true;
                 }
                 catch (Exception err)
                 {
@@ -180,7 +178,7 @@ namespace ArknightPTS
 
         private void Button_ExtractJSON_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mw = new MainWindow();
+            MainWindow mw = new MainWindow();   
             mw.Show();
             this.Close();
         }
