@@ -37,6 +37,17 @@ namespace ArknightPTS
             };
             CONFIG_FILE = defaultConfig;
         }
+        // To be used for gacha simulator in case the other
+        // data in the json are not part of it
+        public void LoadConfig_ForGacha()
+        {
+            Dictionary<string, string> defaultConfig = new Dictionary<string, string>()
+            {
+                { "name", "name" },
+                { "rarity", "rarity" }
+            };
+            CONFIG_FILE = defaultConfig;
+        }
         public bool PullSimJson()
         {
             bool isSuccess = false;
